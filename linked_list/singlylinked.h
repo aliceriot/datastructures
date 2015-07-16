@@ -16,6 +16,8 @@ struct list {
 
 // function declarations
 struct list *listinit();
+int insert(node *after, node *new);
+struct node *nodegen(char *data);
 
 
 // list operation functions
@@ -32,6 +34,29 @@ list *listinit()
     sentinel->cdr = sentinel;
     newlist->car = sentinel;
 
+    return newlist;
+
+}
+
+int insert(node *after, node *new)
+{ // insert 'new' following 'after'
+    new->cdr = after->cdr;
+    after->cdr = new;
+    return 0;
+}
+
+node *nodegen(char *input)
+{ // make a new node, returns ptr
+    node *newnode = malloc(sizeof node);
+    newnode->data = input;
+    return newnode;
+}
+
+void deletenext(node *after)
+{ // delete the node following
+    node *toremove = after->cdr;
+    after->cdr = toremove->cdr;
+    free(toremove);
 }
 
 
