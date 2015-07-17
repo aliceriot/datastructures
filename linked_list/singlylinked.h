@@ -12,6 +12,7 @@ struct node {
 typedef struct list list;
 struct list {
     node *car;
+    node *tail;
 }
 
 // function declarations
@@ -33,9 +34,9 @@ list *listinit()
     sentinel->data = '\0';
     sentinel->cdr = sentinel;
     newlist->car = sentinel;
+    newlist->tail = sentinel;
 
     return newlist;
-
 }
 
 int insert(node *after, node *new)
