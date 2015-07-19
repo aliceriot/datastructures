@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // nodes in our list
 typedef struct node {
@@ -21,8 +22,21 @@ void deletenext(node *after);
 int insertstart(list *list, node *insert);
 void deletebeginning(list *list);
 void printlist(list *list);
+node *listsearch(list *list, char *query);
 
 // list operation functions
+
+node *listsearch(list *list, char *query)
+{
+    node *first = list->car;
+    while (first != list->tail) {
+        if (strcmp(first->data, query) == 0)
+            return first;
+        else 
+            first = first->cdr;
+    }
+    return list->tail;
+}
 
 void printlist(list *list)
 {
