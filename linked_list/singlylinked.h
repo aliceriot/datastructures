@@ -23,6 +23,7 @@ int insertstart(list *list, node *insert);
 void deletebeginning(list *list);
 void printlist(list *list);
 node *listsearch(list *list, char *query);
+void destroylist(list *list);
 
 // list operation functions
 
@@ -37,6 +38,16 @@ node *listsearch(list *list, char *query)
     }
     return list->tail;
 }
+
+void destroylist(list *list)
+{
+    while (list->car != list->tail) {
+        deletebeginning(list);
+    }
+    free(list->tail);
+    free(list);
+}
+
 
 void printlist(list *list)
 {
