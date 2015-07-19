@@ -26,9 +26,24 @@ void main()
     node *thurs = listsearch(mylist, "thursday");
     insert(thurs, nodegen("pants"));
     printlist(mylist);
+    printf("\n");
+
+    printf("Insert 'shoes' at the beginning of the list\n");
+    insertstart(mylist, nodegen("shoes"));
+    printlist(mylist);
+    printf("\n");
+
+    printf("Make a new list, append it to our first\n");
+    list *secondlist = listinit();
+    char *newstrings[] = {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY",
+         "FRIDAY", "SATURDAY", "SUNDAY"};
+    for (i = 0; i < 7; i++) {
+        insertstart(secondlist, nodegen(newstrings[i]));
+    }
+    appendlist(mylist, secondlist);
+    printlist(mylist);
 
     destroylist(mylist);
-    
 }
 
 

@@ -24,6 +24,7 @@ void deletebeginning(list *list);
 void printlist(list *list);
 node *listsearch(list *list, char *query);
 void destroylist(list *list);
+int appendlist(list *first, list *second);
 
 // list operation functions
 
@@ -46,6 +47,25 @@ void destroylist(list *list)
     }
     free(list->tail);
     free(list);
+}
+
+int appendlist(list *first, list *second)
+{ // append the second list to the first
+  // this is super inefficient because this isn't
+  // a circular or double linked list
+    node *iternode = first->car;
+    while (iternode != first->tail) {
+        if (iternode->cdr == first->tail) {
+            iternode->cdr = second->car;
+            first->tail = second->tail;
+            free(first->tail);
+            free(second);
+            return 0;
+        } else {
+            iternode = iternode->cdr;
+        }
+    }
+    return 1;
 }
 
 
