@@ -2,32 +2,47 @@
 #include <stdlib.h>
 
 // nodes in our list
-typedef struct node node;
-struct node {
-    node *cdr;
+typedef struct node {
+    struct node *cdr;
     char *data;
-}
+} node;
 
 // pointer to the first element
-typedef struct list list;
-struct list {
+typedef struct list {
     node *car;
     node *tail;
-}
+} list;
 
 // function declarations
-struct list *listinit();
+list *listinit();
 int insert(node *after, node *new);
-struct node *nodegen(char *data);
-
+node *nodegen(char *data);
+void deletenext(node *after);
+int insertstart(list *list, node *insert);
+void deletebeginning(list *list);
+void printlist(list *list);
 
 // list operation functions
+
+void printlist(list *list)
+{
+    node *first = list->car;
+    node *temp;
+
+    while (first != list->tail) {
+        printf("%s\n", first->data);
+        temp = first;
+        first = temp->cdr;
+    }
+}
 
 list *listinit() 
 { // initialize a list with a sentinel node
 
-    list *newlist = malloc(sizeof list);
-    node *sentinel = malloc(sizeof node);
+    list *newlist;
+    newlist = malloc(sizeof *newlist);
+    node *sentinel;
+    sentinel = malloc(sizeof *sentinel);
     if (sentinel == NULL)
         return 0; 
 
@@ -46,9 +61,17 @@ int insert(node *after, node *new)
     return 0;
 }
 
+int insertstart(list *list, node *insert)
+{
+    insert->cdr = list->car;
+    list->car = insert;
+    return 0;
+}
+
 node *nodegen(char *input)
 { // make a new node, returns ptr
-    node *newnode = malloc(sizeof node);
+    node *newnode;
+    newnode = malloc(sizeof *newnode);
     newnode->data = input;
     return newnode;
 }
@@ -60,5 +83,11 @@ void deletenext(node *after)
     free(toremove);
 }
 
+void deletebeginning(list *list)
+{ //delete the node at the beginning
+    node *toremove = list->car;
+    list->car = toremove->cdr;
+    free(toremove);
+}
 
 
