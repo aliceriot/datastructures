@@ -5,10 +5,9 @@
 // this is just a file to test my singly linked list
 void main()
 {
-    // make a list to test
     list *mylist = listinit();
 
-    // add some data do it
+    printf("make a list, and add stuff!\n");
     char *strings[] = {"monday", "tuesday", "wednesday", "thursday",
          "friday", "saturday", "sunday"};
     int i;
@@ -18,16 +17,17 @@ void main()
     printlist(mylist);
     printf("\n");
 
-    // delete the first item
+    printf("delete the first item\n");
     deletebeginning(mylist);
     printlist(mylist);
     printf("\n");
 
-    // find 'thursday', add 'pants' afterwards
+    printf("find 'thursday', add 'pants' afterwards:\n");
     node *thurs = listsearch(mylist, "thursday");
     insert(thurs, nodegen("pants"));
     printlist(mylist);
 
+    destroylist(mylist);
     
 }
 
