@@ -3,7 +3,8 @@
 A linked list is a pretty simple data structure. This image stolen from
 wikipedia gives you an overview of what they look like:
 
-![](images/singly_linked_list.svg)
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/816px-Singly-linked-list.svg.png)
+
 
 basically we have a series of nodes, and each node has either some data or
 a pointer to some data and a pointer to the next node. Cool! This lets us so
