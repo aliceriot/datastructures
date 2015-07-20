@@ -18,6 +18,23 @@ list *listinit();
 
 list *listinit()
 {
-    list *initlist;
-    initlist = malloc(sizeof initlist);
+    list *newlist;
+    newlist = malloc(sizeof newlist);
+    node *sentinel;
+    sentinel = malloc(sizeof sentinel);
+
+    sentinel->data = '\0';
+    sentinel->next = sentinel;
+    sentinel->previous = sentinel;
+
+    list->head = sentinel;
+    list->tail = sentinel;
+    
+    return newlist;
+}
+
+    
+
+
+
 
