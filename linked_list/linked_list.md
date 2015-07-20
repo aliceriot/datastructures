@@ -111,10 +111,22 @@ This is how we might use this together:
 
 ```C
 list *mylist = listinit();
+char *strings[] = {"monday", "tuesday", "wednesday", "thursday",
+     "friday", "saturday", "sunday"};
+int i;
+for (i = 0; i < 7; i++) {
+    insertstart(mylist, nodegen(strings[i]));
+}
+```
 
+This will give us a linked list, with the days of the week backwards!
+Handy! You can look in `single.c` for more examples of basic operations on
+this list. I wrote a couple more operations on the list, including `printlist`,
+`appendlist`, `listsearch`, `destroylist`, and a few others. Since this is
+a singly linked list some of these are not great algorithms (`appendlist`, for
+isntance, requires us to walk down the entirety of the list in order to locate
+the penultimate `node` (the `node` whose `cdr` is the sentinel node).
 
-
-
-       
+Check out `singlylinked.h` for more!
 
 
