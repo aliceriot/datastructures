@@ -83,8 +83,34 @@ sentinel node is both the first and last element, so it's also the `car`
 of this list. Cool!
 
 Since the singly linked list makes some things a bit tricky it's nice to
-have this sentinel node.
+have this sentinel node. How I went about implementing all this is a bit
+strange, I think, but in order to work with our list we need a helper
+function, `nodegen`, which takes in the data we want to store and returns
+a reference to that node. We can use this along with `insertstart`, which
+inserts a `node` at the head of the list (the most efficient insert operation
+we can do without knowing a `node` pointer already):
 
+```C
+node *nodegen(char *input)
+{ // make a new node, returns ptr
+    node *newnode;
+    newnode = malloc(sizeof *newnode);
+    newnode->data = input;
+    return newnode;
+}
+
+int insertstart(list *list, node *insert)
+{
+    insert->cdr = list->car;
+    list->car = insert;
+    return 0;
+}
+```
+
+This is how we might use this together:
+
+```C
+list *mylist = listinit();
 
 
 
