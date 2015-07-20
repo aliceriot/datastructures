@@ -26,6 +26,23 @@ and so on in `single.c`. If you want to see those tests you can do:
     gcc single.c -o single.bin
     ./single.bin
 
-Nice! 
+Nice! Let's dig into what we've got going on here a little. Basically, to
+start off we need some structs to represent nodes in our list, and also to
+hold a reference to the first and last elements of the list. We'll call
+these `node` and `list`, respectively (creative naming!):
+
+    typedef struct node {
+        struct node *cdr;
+        char *data;
+    } node;
+
+    typedef struct list {
+        node *car;
+        node *tail;
+    } list;
+
+
+
+   
 
 
