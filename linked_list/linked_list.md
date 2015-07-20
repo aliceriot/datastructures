@@ -82,6 +82,9 @@ We tell our list that this sentinel is the end by assigning it to
 sentinel node is both the first and last element, so it's also the `car`
 of this list. Cool!
 
+Since the singly linked list makes some things a bit tricky it's nice to
+have this sentinel node.
+
 
 
 
