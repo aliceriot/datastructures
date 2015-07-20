@@ -33,6 +33,25 @@ list *listinit()
     return newlist;
 }
 
+void insertafter(node *after, node *newnode)
+{ // insert newnode after after (lol)
+    newnode->previous = after;
+    after->next->previous = newnode;
+    newnode->next = after->next;
+    after->next = newnode;
+}
+
+void printlist(list *toprint)
+{
+    node *iternode = list->head;
+    while (iternode != list->tail) {
+	printf("%s\n", iternode->data);
+	first = first->next;
+    }
+}
+
+    
+    
     
 
 
