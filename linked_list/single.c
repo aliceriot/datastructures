@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "singlylinked.h"
 
-
 // this is just a file to test my singly linked list
 void main()
 {

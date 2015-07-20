@@ -68,7 +68,6 @@ int appendlist(list *first, list *second)
     return 1;
 }
 
-
 void printlist(list *list)
 {
     node *first = list->car;

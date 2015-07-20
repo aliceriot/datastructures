@@ -50,23 +50,24 @@ or to the sentinel node. A sentinal node is basically a special node which
 signifies the end of the list, we add it when we initialize the list.
 Speaking of which, how do we initialize a list? Well, it looks like this:
 
-    list *listinit() 
-    { // initialize a list with a sentinel node
+```C
+list *listinit() { // initialize a list with a sentinel node
 
-        list *newlist;
-        newlist = malloc(sizeof *newlist);
-        node *sentinel;
-        sentinel = malloc(sizeof *sentinel);
-        if (sentinel == NULL)
-            return 0; 
+    list *newlist;
+    newlist = malloc(sizeof *newlist);
+    node *sentinel;
+    sentinel = malloc(sizeof *sentinel);
+    if (sentinel == NULL)
+        return 0; 
 
-        sentinel->data = '\0';
-        sentinel->cdr = sentinel;
-        newlist->car = sentinel;
-        newlist->tail = sentinel;
+    sentinel->data = '\0';
+    sentinel->cdr = sentinel;
+    newlist->car = sentinel;
+    newlist->tail = sentinel;
 
-        return newlist;
-    }
+    return newlist;
+}
+```
 
 So we have a function `listinit` which returns a pointer to a list. We
 also allocate a `node` which has no data in it (`sentinel->data = '\0'`).
