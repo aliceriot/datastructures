@@ -41,8 +41,44 @@ these `node` and `list`, respectively (creative naming!):
         node *tail;
     } list;
 
+So each `node` has a pointer to some string (our data) and to `cdr`, which
+is the rest of the list. I took this naming convention from Scheme because
+I like it.
+
+`cdr` is always going to be a pointer to either another node in the list
+or to the sentinel node. A sentinal node is basically a special node which
+signifies the end of the list, we add it when we initialize the list.
+Speaking of which, how do we initialize a list? Well, it looks like this:
+
+    list *listinit() 
+    { // initialize a list with a sentinel node
+
+        list *newlist;
+        newlist = malloc(sizeof *newlist);
+        node *sentinel;
+        sentinel = malloc(sizeof *sentinel);
+        if (sentinel == NULL)
+            return 0; 
+
+        sentinel->data = '\0';
+        sentinel->cdr = sentinel;
+        newlist->car = sentinel;
+        newlist->tail = sentinel;
+
+        return newlist;
+    }
+
+So we have a function `listinit` which returns a pointer to a list. We
+also allocate a `node` which has no data in it (`sentinel->data = '\0'`).
+We tell our list that this sentinel is the end by assigning it to
+`newlist->tail`. For now, since we have no other list elements, the
+sentinel node is both the first and last element, so it's also the `car`
+of this list. Cool!
 
 
-   
+
+
+
+       
 
 
