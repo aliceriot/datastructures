@@ -124,8 +124,8 @@ Handy! You can look in `single.c` for more examples of basic operations on
 this list. I wrote a couple more operations on the list, including `printlist`,
 `appendlist`, `listsearch`, `destroylist`, and a few others. Since this is
 a singly linked list some of these are not great algorithms (`appendlist`, for
-isntance, requires us to walk down the entirety of the list in order to locate
-the penultimate `node` (the `node` whose `cdr` is the sentinel node).
+instance, requires us to walk down the entirety of the list in order to locate
+the penultimate `node`, whose `cdr` is the sentinel node).
 
 Check out `singlylinked.h` for more!
 
