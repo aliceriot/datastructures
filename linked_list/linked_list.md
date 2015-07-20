@@ -23,23 +23,27 @@ operations, or reversing the list) are not efficient.
 Anyway, my singly linked list implementation is in `singlylinked.h`, with tests
 and so on in `single.c`. If you want to see those tests you can do:
 
-    gcc single.c -o single.bin
-    ./single.bin
+```bash
+gcc single.c -o single.bin
+./single.bin
+```
 
 Nice! Let's dig into what we've got going on here a little. Basically, to
 start off we need some structs to represent nodes in our list, and also to
 hold a reference to the first and last elements of the list. We'll call
 these `node` and `list`, respectively (creative naming!):
 
-    typedef struct node {
-        struct node *cdr;
-        char *data;
-    } node;
+```C
+typedef struct node {
+    struct node *cdr;
+    char *data;
+} node;
 
-    typedef struct list {
-        node *car;
-        node *tail;
-    } list;
+typedef struct list {
+    node *car;
+    node *tail;
+} list;
+```
 
 So each `node` has a pointer to some string (our data) and to `cdr`, which
 is the rest of the list. I took this naming convention from Scheme because
@@ -51,7 +55,8 @@ signifies the end of the list, we add it when we initialize the list.
 Speaking of which, how do we initialize a list? Well, it looks like this:
 
 ```C
-list *listinit() { // initialize a list with a sentinel node
+list *listinit() 
+{ // initialize a list with a sentinel node
 
     list *newlist;
     newlist = malloc(sizeof *newlist);
