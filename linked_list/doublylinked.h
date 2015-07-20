@@ -33,6 +33,14 @@ list *listinit()
     return newlist;
 }
 
+node *nodegen(char *input)
+{
+    node *newnode;
+    newnode = malloc(sizeof newnode);
+    newnode->data = input;
+    return newnode;
+}
+
 void insertafter(node *after, node *newnode)
 { // insert newnode after after (lol)
     newnode->previous = after;
