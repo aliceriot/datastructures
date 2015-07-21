@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 typedef struct node {
-    struct *node previous;
-    struct *node next;
+    struct node *previous;
+    struct node *next;
     char *data;
 } node;
 
@@ -27,8 +28,8 @@ list *listinit()
     sentinel->next = sentinel;
     sentinel->previous = sentinel;
 
-    list->head = sentinel;
-    list->tail = sentinel;
+    newlist->head = sentinel;
+    newlist->tail = sentinel;
     
     return newlist;
 }
@@ -41,6 +42,13 @@ node *nodegen(char *input)
     return newnode;
 }
 
+void prepend(list *list, node *newnode)
+{
+    newnode->next = list->head;
+    list->head->previous = newnode;
+    list->head = newnode;
+}
+    
 void insertafter(node *after, node *newnode)
 { // insert newnode after after (lol)
     newnode->previous = after;
@@ -51,10 +59,10 @@ void insertafter(node *after, node *newnode)
 
 void printlist(list *toprint)
 {
-    node *iternode = list->head;
-    while (iternode != list->tail) {
+    node *iternode = toprint->head;
+    while (iternode != toprint->tail) {
 	printf("%s\n", iternode->data);
-	first = first->next;
+	iternode = iternode->next;
     }
 }
 
