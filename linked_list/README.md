@@ -129,4 +129,23 @@ the penultimate `node`, whose `cdr` is the sentinel node).
 
 Check out `singlylinked.h` for more!
 
+##Doubly Linked List
+
+A doubly linked list is a lot like a singly linked list, just, well,
+doubly linked? Exactly! Anyway, this is what the relevants structs look
+like:
+
+```C
+typedef struct node {
+    struct node *previous;
+    struct node *next;
+    char *data;
+} node;
+
+typedef struct list {
+    node *head;
+    node *tail;
+} list;
+```
+
 
