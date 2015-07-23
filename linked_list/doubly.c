@@ -21,6 +21,16 @@ void main()
     insertafter(tuesday, nodegen("pants"));
     printlist(mylist);
 
-    
+    // make a new list to play with
+    list *newlist = listinit(); 
+
+    for (i = 0; i < 7; i++) {
+        prepend(newlist, nodegen(strings[i]));
+    }
+
+    printf("\n\n trying out the append operation\n\n");
+    appendlist(mylist, newlist);
+    printlist(mylist);
+
 }
 

@@ -132,7 +132,7 @@ Check out `singlylinked.h` for more!
 ##Doubly Linked List
 
 A doubly linked list is a lot like a singly linked list, just, well,
-doubly linked? Exactly! Anyway, this is what the relevants structs look
+doubly linked? Exactly! Anyway, this is what the relevant structs look
 like:
 
 ```C
@@ -148,4 +148,28 @@ typedef struct list {
 } list;
 ```
 
+Like before we define a `node` struct, which both holds the info about
+nodes around it and the data we want to store. Then we have a `list`
+struct, which holds the head and tail of the list (the first and last
+elements, respectively). Cool!
 
+One opperation that is a lot more efficient with the doubly linked list is
+appending a list to an existing list. Here's the function to do that:
+
+```C
+void appendlist(list *first, list *second)
+{
+    node *last;
+    last = first->tail->previous;
+    last->next = second->head;
+    second->head->previous = last;
+    free(first->tail);
+    first->tail = second->tail;
+    free(second);
+}
+```
+
+We can see why that is: before we had to traverse the whole list in order
+to locate the node which was going to 'join' the two lists (the node which
+would have a pointer to `head` of `second` as `next`). Now though, we
+store the tail, so we can just go backwards by one from there! Nice.
