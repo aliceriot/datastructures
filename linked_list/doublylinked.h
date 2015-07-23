@@ -19,6 +19,7 @@ void printlist(list *toprint);
 node *listsearch(list *search, char *query);
 void insertafter(node *after, node *newnode);
 void prepend(list *list, node *newnode);
+void appendlist(list *first, list *second);
 
 // functions
 
@@ -85,4 +86,13 @@ node *listsearch(list *search, char *query)
     return search->tail;
 }
 
-/* int appendlist(list *first, list *second) */
+void appendlist(list *first, list *second)
+{
+    node *last;
+    last = first->tail->previous;
+    last->next = second->head;
+    second->head->previous = last;
+    free(first->tail);
+    first->tail = second->tail;
+    free(second);
+}
