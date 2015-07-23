@@ -14,6 +14,11 @@ typedef struct list {
 } list;
 
 list *listinit();
+node *nodegen;
+void printlist(list *toprint);
+node *listsearch(list *search, char *query);
+void insertafter(node *after, node *newnode);
+void prepend(list *list, node *newnode);
 
 // functions
 
@@ -65,6 +70,21 @@ void printlist(list *toprint)
 	iternode = iternode->next;
     }
 }
+
+node *listsearch(list *search, char *query)
+{
+    node *iternode;
+    iternode = list->head;
+
+    while (iternode != list->tail) {
+        if (strcmp(iternode->data, query) == 0)
+            return iternode;
+        else
+            iternode = iternode->next;
+    }
+    return list->tail;
+}
+
 
     
     

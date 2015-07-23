@@ -14,5 +14,7 @@ void main()
 	prepend(mylist, nodegen(strings[i]));
     }
     printlist(mylist);
+
+    
 }
 
