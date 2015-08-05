@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <openssl/sha.h>
+//#include <openssl/sha.h>
 
 /* My hashtable implementation. This code is free to use/re-use/whatever */
 /* if you find it helpful */
@@ -26,62 +26,64 @@ typedef struct list {
     node *tail;
 } list;
 
-typedef struct hashtable {
-    int size;
-    list **table;
-} hashtable;
+/* typedef struct hashtable { */
+/*     int size; */
+/*     list **table; */
+/* } hashtable; */
 
 // function declarations
-unsigned char *hash(unsigned char *key, unsigned char *output);
+/* unsigned char *hash(unsigned char *key, unsigned char *output); */
 /* hashtable *hashinit(int size); */
 /* void destroyhash(hashtable *oldtable); */
 list *listinit();
-void destroylist(list *oldlist);
-void printlist(list *toprint);
+/* void destroylist(list *oldlist); */
+/* void printlist(list *toprint); */
 node *nodegen(char *key, char *value);
+/* void listinsert(list *insertlist, node *toinsert); */
+/* void listremove(list *insertlist, node *toremove); */
 
 // function definitions
-unsigned char *hash(unsigned char *key, unsigned char *output)
-{ // get the hash of a key
-    size_t len = sizeof(key);
-    /* unsigned char output[SHA_DIGEST_LENGTH]; */
-    SHA1(key, len, output);
-    /* return output; */
-}
+/* unsigned char *hash(unsigned char *key, unsigned char *output) */
+/* { // get the hash of a key */
+/*     size_t len = sizeof(key); */
+/*     /1* unsigned char output[SHA_DIGEST_LENGTH]; *1/ */
+/*     SHA1(key, len, output); */
+/*     /1* return output; *1/ */
+/* } */
 
-hashtable *hashinit(int size)
-{ // allocates hashtable array, returns pointer to array
-    list **hasharray;
-    hasharray = malloc(sizeof (list) * size);
-    hashtable *hashtab;
-    hashtab = malloc(sizeof hashtab);
+/* hashtable *hashinit(int size) */
+/* { // allocates hashtable array, returns pointer to array */
+/*     list **hasharray; */
+/*     hasharray = malloc(sizeof (list) * size); */
+/*     hashtable *hashtab; */
+/*     hashtab = malloc(sizeof hashtab); */
 
-    int i;
-    for (i = 0; i < size; i++) {
-        hasharray[i] = listinit();
-    }
+/*     int i; */
+/*     for (i = 0; i < size; i++) { */
+/*         hasharray[i] = listinit(); */
+/*     } */
 
-    hashtab->table = hasharray;
-    hashtab->size = size;
-    return hashtab;
-}
+/*     hashtab->table = hasharray; */
+/*     hashtab->size = size; */
+/*     return hashtab; */
+/* } */
 
-void destroyhash(hashtable *oldtable)
-{ // destroy!!
-    int i;
-    for (i = 0; i < oldtable->size; i++) {
-        destroylist(oldtable->table[i]);
-    }
-    free(oldtable);
-}
+/* void destroyhash(hashtable *oldtable) */
+/* { // destroy!! */
+/*     int i; */
+/*     for (i = 0; i < oldtable->size; i++) { */
+/*         destroylist(oldtable->table[i]); */
+/*     } */
+/*     free(oldtable); */
+/* } */
 
 // list functions
 list *listinit()
 {
     list *newlist;
-    newlist = malloc(sizeof newlist);
+    newlist = malloc(sizeof (list));
     node *sentinel;
-    sentinel = malloc(sizeof sentinel);
+    sentinel = malloc(sizeof (node));
 
     sentinel->key = '\0';
     sentinel->value = '\0';
@@ -111,25 +113,25 @@ void destroylist(list *oldlist)
 node *nodegen(char *key, char *value)
 { // make a new node
     node *newnode;
-    newnode = malloc(sizeof newnode);
+    newnode = malloc(sizeof (node));
     newnode->key = key;
     newnode->value = value;
     return newnode;
 }
 
-void listinsert(list *insertlist, node *toinsert)
-{ // inserts a new item at the beginning
-    toinsert->next = insertlist->head;
-    toinsert->previous = insertlist->tail;
-    insertlist->head = toinsert;
-}
+/* void listinsert(list *insertlist, node *toinsert) */
+/* { // inserts a new item at the beginning */
+/*     toinsert->next = insertlist->head; */
+/*     toinsert->previous = insertlist->tail; */
+/*     insertlist->head = toinsert; */
+/* } */
 
-void listremove(list *insertlist, node *toremove)
-{ // remove a given node (use listsearch to find it)
-    toremove->next->previous = toremove->previous;
-    toremove->previous->next = toremove->next;
-    free(toremove);
-}
+/* void listremove(list *insertlist, node *toremove) */
+/* { // remove a given node (use listsearch to find it) */
+/*     toremove->next->previous = toremove->previous; */
+/*     toremove->previous->next = toremove->next; */
+/*     free(toremove); */
+/* } */
 
 
 // debugging tools

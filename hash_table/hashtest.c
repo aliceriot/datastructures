@@ -13,8 +13,7 @@ int main() {
     node *newnode;
     newnode = nodegen("key", "value");
     /* listinsert(mylist, nodegen("key", "value")); */
-    printlist(mylist);
-    
+    /* printlist(mylist); */
 }
 
 
