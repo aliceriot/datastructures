@@ -46,6 +46,10 @@ Basically we make each bin of our hash table (so the array entry
 `hash(key)`) point to a linked list - in that linked list we can store
 everything that hashes to that particular key. Nice!
 
+I wrote a new implementation of a doubly-linked list that includes two
+`*char` in order to hold both the key and the value (we want to store both
+in our list so that we can tell which value corresponds to which key).
+
 ##Hash functions
 
 I think for this we're just going to use the SHA1 hash - this isn't
