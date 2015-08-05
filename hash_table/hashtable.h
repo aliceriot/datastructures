@@ -41,6 +41,7 @@ void printlist(list *toprint);
 node *nodegen(char *key, char *value);
 void listinsert(list *insertlist, node *toinsert);
 void listremove(list *removelist, node *toremove);
+node *listsearch(list *tosearch, char *key, char *value);
 
 // function definitions
 unsigned char *hash(unsigned char *key, unsigned char *output)
@@ -137,6 +138,19 @@ void listremove(list *curlist, node *toremove)
         toremove->previous->next = toremove->next;
         free(toremove);
     }
+}
+
+node *listsearch(list *tosearch, char *key, char *value)
+{
+    node *iternode = tosearch->head;
+    while (iternode != tosearch->tail) {
+        if ((strcmp(iternode->key, key) == 0) && (strcmp(iternode->value, value) == 0)) {
+            return iternode;
+        } else {
+            iternode = iternode->next;
+        }
+    }
+    return tosearch->tail;
 }
 
 

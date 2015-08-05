@@ -20,6 +20,11 @@ int main() {
     listremove(mylist, testnode);
     printlist(mylist);
 
+    printf("\nsearch for things!\n");
+    node *search = listsearch(mylist, "bloop", "dingles");
+    listremove(mylist, search);
+    printlist(mylist);
+
 }
 
 
