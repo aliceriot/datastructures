@@ -153,7 +153,6 @@ node *listsearch(list *tosearch, char *key, char *value)
     return tosearch->tail;
 }
 
-
 // debugging tools
 void printlist(list *toprint)
 {

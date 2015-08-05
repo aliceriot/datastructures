@@ -50,4 +50,7 @@ everything that hashes to that particular key. Nice!
 
 I think for this we're just going to use the SHA1 hash - this isn't
 considered secure for crypto work but it should be good enough here. We
-can get it on Linux from `openssl/sha.h`, handy!
+can get it on Linux from `openssl/sha.h`, handy! To get that to work you
+need to run gcc with the `-I/usr/include/openssl` and `-lcrypto` flags
+(assuming you're running Debian or similar, it may be different on other
+distros or on e.g. OSX).
