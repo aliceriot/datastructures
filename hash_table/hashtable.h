@@ -40,7 +40,7 @@ void destroylist(list *oldlist);
 void printlist(list *toprint);
 node *nodegen(char *key, char *value);
 void listinsert(list *insertlist, node *toinsert);
-void listremove(list *insertlist, node *toremove);
+void listremove(list *removelist, node *toremove);
 
 // function definitions
 unsigned char *hash(unsigned char *key, unsigned char *output)
@@ -126,11 +126,17 @@ void listinsert(list *insertlist, node *toinsert)
     insertlist->head = toinsert;
 }
 
-void listremove(list *insertlist, node *toremove)
+void listremove(list *curlist, node *toremove)
 { // remove a given node (use listsearch to find it)
-    toremove->next->previous = toremove->previous;
-    toremove->previous->next = toremove->next;
-    free(toremove);
+    if (curlist->head == toremove) {
+        curlist->head = toremove->next;
+        curlist->head->previous = toremove->previous;
+        free(toremove);
+    } else {
+        toremove->next->previous = toremove->previous;
+        toremove->previous->next = toremove->next;
+        free(toremove);
+    }
 }
 
 
@@ -141,7 +147,7 @@ void printlist(list *toprint)
     if (iternode == toprint->tail)
         printf("empty list!\n");
     while (iternode != toprint->tail) {
-	printf("%s\n", iternode->key);
+	printf("%s\t", iternode->key);
 	printf("%s\n", iternode->value);
 	iternode = iternode->next;
     }

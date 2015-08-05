@@ -9,11 +9,17 @@ int main() {
     list *mylist = listinit();
     printlist(mylist);
     
-    printf("add things:\n");
-    node *newnode;
-    newnode = nodegen("key", "value");
-    /* listinsert(mylist, nodegen("key", "value")); */
-    /* printlist(mylist); */
+    printf("\nadd things:\n");
+    listinsert(mylist, nodegen("key", "value"));
+    listinsert(mylist, nodegen("bloop", "dingles"));
+    node *testnode = nodegen("canwe", "delete?");
+    listinsert(mylist, testnode);
+    printlist(mylist);
+
+    printf("\nremove things:\n");
+    listremove(mylist, testnode);
+    printlist(mylist);
+
 }
 
 
