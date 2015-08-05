@@ -1,9 +1,9 @@
 CC=gcc
-CFLAGS=-t -I/usr/include/openssl -L/usr/lib/x86_64-linux-gnu -lcrypto -lssl3 -lssl
+CFLAGS=-I/usr/include/openssl -lcrypto 
 DEPS=hashtable.h
 
 out/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 hashmake: out/hashtest.o
-	$(CC) -lm -o hashtest.bin out/hashtest.o -t -I/usr/include/openssl -L/usr/lib/x86_64-linux-gnu -lcrypto -lssl3 -lssl
+	$(CC) -lm -o hashtest.bin out/hashtest.o -t -I/usr/include/openssl -lcrypto 

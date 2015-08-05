@@ -33,10 +33,12 @@ typedef struct hashtable {
 
 // function declarations
 unsigned char *hash(unsigned char *key, unsigned char *output);
-hashtable *hashinit(int size);
-void destroyhash(hashtable *oldtable);
+/* hashtable *hashinit(int size); */
+/* void destroyhash(hashtable *oldtable); */
 list *listinit();
 void destroylist(list *oldlist);
+void printlist(list *toprint);
+node *nodegen(char *key, char *value);
 
 // function definitions
 unsigned char *hash(unsigned char *key, unsigned char *output)
@@ -104,6 +106,15 @@ void destroylist(list *oldlist)
     }
     free(sentinel);
     free(oldlist);
+}
+
+node *nodegen(char *key, char *value)
+{ // make a new node
+    node *newnode;
+    newnode = malloc(sizeof newnode);
+    newnode->key = key;
+    newnode->value = value;
+    return newnode;
 }
 
 void listinsert(list *insertlist, node *toinsert)

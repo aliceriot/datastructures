@@ -4,12 +4,17 @@
 #include <openssl/sha.h>
 #include "hashtable.h"
 
-void main() {
-    // initialize without errors
+int main() {
+    printf("initialize list:\n");
     list *mylist = listinit();
     printlist(mylist);
     
-    // add things to list
+    printf("add things:\n");
+    node *newnode;
+    newnode = nodegen("key", "value");
+    /* listinsert(mylist, nodegen("key", "value")); */
+    printlist(mylist);
+    
 }
 
 
