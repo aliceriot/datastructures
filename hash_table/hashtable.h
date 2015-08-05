@@ -27,6 +27,7 @@ unsigned char *hash(unsigned char *key);
 list **hashinit(int size);
 void destroyhash(hashtable *oldtable);
 list *listinit();
+void destroylist(list *oldlist);
 
 // function definitions
 unsigned char *hash(unsigned char *key)
