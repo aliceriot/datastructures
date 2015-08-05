@@ -28,37 +28,38 @@ typedef struct list {
 
 typedef struct hashtable {
     int size;
-    list *table[];
+    list **table;
 } hashtable;
 
 // function declarations
-unsigned char *hash(unsigned char *key);
+unsigned char *hash(unsigned char *key, unsigned char *output);
 hashtable *hashinit(int size);
 void destroyhash(hashtable *oldtable);
 list *listinit();
 void destroylist(list *oldlist);
 
 // function definitions
-unsigned char *hash(unsigned char *key)
+unsigned char *hash(unsigned char *key, unsigned char *output)
 { // get the hash of a key
     size_t len = sizeof(key);
-    unsigned char output[SHA_DIGEST_LENGTH];
-    SHA1(teststring, len, output);
-    return output;
+    /* unsigned char output[SHA_DIGEST_LENGTH]; */
+    SHA1(key, len, output);
+    /* return output; */
 }
 
 hashtable *hashinit(int size)
 { // allocates hashtable array, returns pointer to array
-    list *hasharray[size];
+    list **hasharray;
+    hasharray = malloc(sizeof (list) * size);
     hashtable *hashtab;
     hashtab = malloc(sizeof hashtab);
 
     int i;
     for (i = 0; i < size; i++) {
-        memset(hashtab[i], listinit(), sizeof(*doublelist));
+        hasharray[i] = listinit();
     }
 
-    hashtab->table = hashtable;
+    hashtab->table = hasharray;
     hashtab->size = size;
     return hashtab;
 }
@@ -67,7 +68,7 @@ void destroyhash(hashtable *oldtable)
 { // destroy!!
     int i;
     for (i = 0; i < oldtable->size; i++) {
-        destroylist(hashtable->table[i]);
+        destroylist(oldtable->table[i]);
     }
     free(oldtable);
 }
@@ -108,7 +109,7 @@ void destroylist(list *oldlist)
 void listinsert(list *insertlist, node *toinsert)
 { // inserts a new item at the beginning
     toinsert->next = insertlist->head;
-    toinsert->prepend = insertlist->tail;
+    toinsert->previous = insertlist->tail;
     insertlist->head = toinsert;
 }
 
@@ -117,5 +118,19 @@ void listremove(list *insertlist, node *toremove)
     toremove->next->previous = toremove->previous;
     toremove->previous->next = toremove->next;
     free(toremove);
+}
+
+
+// debugging tools
+void printlist(list *toprint)
+{
+    node *iternode = toprint->head;
+    if (iternode == toprint->tail)
+        printf("empty list!\n");
+    while (iternode != toprint->tail) {
+	printf("%s\n", iternode->key);
+	printf("%s\n", iternode->value);
+	iternode = iternode->next;
+    }
 }
 
