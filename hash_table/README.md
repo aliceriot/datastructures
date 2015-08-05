@@ -33,3 +33,9 @@ big. We do not want to allocate enough space to completely avoid
 collisions (which would require allocated space equal to keyspace size)
 since we'd probably like to store other things on our computer besides our
 small movie database.
+
+So how do we get around this? Well, one simple way is with the modulo
+operator. Say we make a guess about how much storage to allocate - maybe
+we want to do 1000 records or so. So we can allocate an array with
+dimension 1000, and then once we hash our keys we can take `hash(key)
+% 1000` to get an array index into which to stick the value.
