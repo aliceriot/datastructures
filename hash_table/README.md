@@ -45,3 +45,9 @@ things we could do. What we're going to do is called separate chaining.
 Basically we make each bin of our hash table (so the array entry
 `hash(key)`) point to a linked list - in that linked list we can store
 everything that hashes to that particular key. Nice!
+
+##Hash functions
+
+I think for this we're just going to use the SHA1 hash - this isn't
+considered secure for crypto work but it should be good enough here. We
+can get it on Linux from `openssl/sha.h`, handy!
