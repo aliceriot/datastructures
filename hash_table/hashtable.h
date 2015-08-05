@@ -8,6 +8,7 @@ typedef struct node {
     struct node *previous;
     struct node *next;
     char *key;
+    char *value;
 } node;
 
 typedef struct list {
@@ -15,9 +16,16 @@ typedef struct list {
     node *tail;
 } list;
 
+// hashtable struct
+typedef struct hashtable {
+    int size;
+    list *table[];
+} hashtable;
+
 // function declarations
 unsigned char *hash(unsigned char *key);
 list **hashinit(int size);
+list *listinit();
 
 // function definitions
 unsigned char *hash(unsigned char *key)
@@ -28,13 +36,54 @@ unsigned char *hash(unsigned char *key)
     return output;
 }
 
-list **hashinit(int size)
+hashtable *hashinit(int size)
 { // allocates hashtable array, returns pointer to array
-    list *hashtab[size];
+    list *hasharray[size];
+    hashtable *hashtab;
+    hashtab = malloc(sizeof hashtab);
 
     int i;
     for (i = 0; i < size; i++) {
-        memset(hashtab[i], *void, sizeof(*doublelist));
+        memset(hashtab[i], listinit(), sizeof(*doublelist));
     }
+
+    hashtab->table = hashtable;
+    hashtab->size = size;
     return hashtab;
 }
+
+void destroyhash(
+
+// list functions
+list *listinit()
+{
+    list *newlist;
+    newlist = malloc(sizeof newlist);
+    node *sentinel;
+    sentinel = malloc(sizeof sentinel);
+
+    sentinel->key = '\0';
+    sentinel->value = '\0';
+    sentinel->next = sentinel;
+    sentinel->previous = sentinel;
+
+    newlist->head = sentinel;
+    newlist->tail = sentinel;
+    
+    return newlist;
+}
+
+void destroylist(list *oldlist)
+{
+    node *sentinel = oldlist->tail;
+    node *iternode = oldlist->head;
+    node *next;
+    while (iternode != sentinel) {
+        next = iternode->next;
+        free(iternode);
+        iternode = next;
+    }
+    free(sentinel);
+    free(oldlist);
+}
+
