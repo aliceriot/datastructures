@@ -25,6 +25,7 @@ typedef struct hashtable {
 // function declarations
 unsigned char *hash(unsigned char *key);
 list **hashinit(int size);
+void destroyhash(hashtable *oldtable);
 list *listinit();
 
 // function definitions
@@ -52,7 +53,14 @@ hashtable *hashinit(int size)
     return hashtab;
 }
 
-void destroyhash(
+void destroyhash(hashtable *oldtable)
+{ // destroy!!
+    int i;
+    for (i = 0; i < oldtable->size; i++) {
+        destroylist(hashtable->table[i]);
+    }
+    free(oldtable);
+}
 
 // list functions
 list *listinit()
