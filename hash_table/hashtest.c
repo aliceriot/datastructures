@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <openssl/sha.h>
+#include "hashtable.h"
 
 unsigned char *SHA1(const unsigned char *d, size_t n, unsigned char *md);
 

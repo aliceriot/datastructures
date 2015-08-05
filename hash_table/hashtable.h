@@ -3,13 +3,11 @@
 #include <stdlib.h>
 #include <openssl/sha.h>
 
-unsigned char *hash(unsigned char *key);
-
 // linked list structs
 typedef struct node {
     struct node *previous;
     struct node *next;
-    char *data;
+    char *key;
 } node;
 
 typedef struct list {
@@ -17,7 +15,11 @@ typedef struct list {
     node *tail;
 } list;
 
+// function declarations
+unsigned char *hash(unsigned char *key);
+list **hashinit(int size);
 
+// function definitions
 unsigned char *hash(unsigned char *key)
 { // get the hash of a key
     size_t len = sizeof(key);
@@ -26,13 +28,13 @@ unsigned char *hash(unsigned char *key)
     return output;
 }
 
-doublelist **hashtab(int size)
+list **hashinit(int size)
 { // allocates hashtable array, returns pointer to array
-    doublelist *hashtab[size];
+    list *hashtab[size];
 
     int i;
     for (i = 0; i < size; i++) {
         memset(hashtab[i], *void, sizeof(*doublelist));
     }
-    return doublelist;
+    return hashtab;
 }
