@@ -39,3 +39,9 @@ operator. Say we make a guess about how much storage to allocate - maybe
 we want to do 1000 records or so. So we can allocate an array with
 dimension 1000, and then once we hash our keys we can take `hash(key)
 % 1000` to get an array index into which to stick the value.
+
+That sounds great, but what about collisions? Well, there's a couple of
+things we could do. What we're going to do is called separate chaining.
+Basically we make each bin of our hash table (so the array entry
+`hash(key)`) point to a linked list - in that linked list we can store
+everything that hashes to that particular key. Nice!
