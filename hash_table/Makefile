@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-t -I/usr/include/openssl -L/usr/lib/x86_64-linux-gnu -lcrypto lssl3 -lssl
+CFLAGS=-t -I/usr/include/openssl -L/usr/lib/x86_64-linux-gnu -lcrypto -lssl3 -lssl
 DEPS=hashtable.h
 
 out/%.o: %.c $(DEPS)
