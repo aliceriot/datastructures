@@ -23,7 +23,7 @@ a problem, and the name of that problem is hash collision.
 One of the problems with this is that unless we allocate an amount of
 storage similar to the keyspace size to our array (the array whose indices
 we'll get from the hash function) we will have collisions. A collision is
-when two values (`title` and `directory`, if we're storing movie info)
+when two values (`title` and `director`, if we're storing movie info)
 produce the same hash value. We need to think hard about what to do in
 this case.
 
@@ -58,3 +58,30 @@ can get it on Linux from `openssl/sha.h`, handy! To get that to work you
 need to run gcc with the `-I/usr/include/openssl` and `-lcrypto` flags
 (assuming you're running Debian or similar, it may be different on other
 distros or on e.g. OSX).
+
+We're just going to do something like:
+
+```C
+#include <openssl/sha.h>
+
+unsigned char *hash(unsigned char *key, unsigned char *output)
+{ // get the hash of a key
+    size_t len = sizeof(key);
+    /* unsigned char output[SHA_DIGEST_LENGTH]; */
+    SHA1(key, len, output);
+    /* return output; */
+}
+```
+
+Then the function `hash` will return the SHA1 hash of `key`. Nice! 
+
+
+
+
+
+
+
+
+
+
+
