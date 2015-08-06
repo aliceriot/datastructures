@@ -25,4 +25,25 @@ int main() {
     listremove(mylist, search);
     printlist(mylist);
 
+    printf("\ninitialize the hashtable:\n");
+    hashtable *table;
+    table = hashinit(100);
+
+    printf("\ntwo things should hash to the same value:\n");
+    char trial_text[] = "let's check that!";
+    printf("going to hash: '%s'\n", trial_text);
+    char trialone[SHA_DIGEST_LENGTH];
+    char trialtwo[SHA_DIGEST_LENGTH];
+    hash(trial_text, trialone);
+    hash(trial_text, trialtwo);
+    int i;
+    printf("one:\n");
+    for (i = 0; i < SHA_DIGEST_LENGTH; i++) {
+        printf("%d ", trialone[i]);
+    }
+    printf("\ntwo:\n");
+    for (i = 0; i < SHA_DIGEST_LENGTH; i++) {
+        printf("%d ", trialtwo[i]);
+    }
+
 }
