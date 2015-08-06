@@ -30,25 +30,30 @@ int main() {
     table = hashinit(100);
 
     printf("\ntwo things should hash to the same value:\n");
-    char trial_text[] = "let's check that!";
+    unsigned char trial_text[] = "let's check that!";
     printf("going to hash: '%s'\n", trial_text);
-    char trialone[SHA_DIGEST_LENGTH];
-    char trialtwo[SHA_DIGEST_LENGTH];
+    unsigned char trialone[SHA_DIGEST_LENGTH];
+    unsigned char trialtwo[SHA_DIGEST_LENGTH];
     hash(trial_text, trialone);
     hash(trial_text, trialtwo);
     int i;
     printf("one:\n");
     for (i = 0; i < SHA_DIGEST_LENGTH; i++) {
-        printf("%d ", trialone[i]);
+        printf("%02x ", trialone[i]);
     }
     printf("\ntwo:\n");
     for (i = 0; i < SHA_DIGEST_LENGTH; i++) {
-        printf("%d ", trialtwo[i]);
+        printf("%02x ", trialtwo[i]);
     }
 
     printf("\ndestroy a hashtable:\n");
     destroyhash(table);
     table = hashinit(100);
+    printf("success!\n");
+    inserthash(table, "key", "value");
+
+    printf("\ninsert some things into the table:\n");
+    inserthash(table, "mykey", "myvalue");
     printf("success!\n");
 
 }

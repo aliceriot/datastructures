@@ -58,3 +58,25 @@ void destroyhash(hashtable *oldtable)
     }
     free(oldtable);
 }
+
+void inserthash(hashtable *hashtab, unsigned char *key, char *value)
+{ // insert key,value pair into hashtab
+    unsigned char keyhash[SHA_DIGEST_LENGTH];
+    int i = 1;
+    int j = 0;
+    int arraykey = 1;
+
+    // use as many of the bytes as we need for array size
+    hash(key, keyhash);
+    while (i < hashtab->size) {
+        arraykey *= keyhash[j++];
+        i *= 256;
+    }
+    arraykey = arraykey % hashtab->size;
+
+    list *temp = hashtab->table[arraykey];
+    listinsert(temp, nodegen(key, value));
+}
+
+
+
