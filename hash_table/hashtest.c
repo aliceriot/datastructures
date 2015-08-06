@@ -56,4 +56,7 @@ int main() {
     inserthash(table, "mykey", "myvalue");
     printf("success!\n");
 
+    printf("\ntry to print the table:\n");
+    printhashtab(table);
+
 }

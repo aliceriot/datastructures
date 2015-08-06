@@ -78,5 +78,17 @@ void inserthash(hashtable *hashtab, unsigned char *key, char *value)
     listinsert(temp, nodegen(key, value));
 }
 
-
+void printhashtab(hashtable *toprint)
+{
+    int i;
+    list *templist;
+    printf("keys:\tvalues:\n");
+    for (i = 0; i < toprint->size; i++) {
+        templist = toprint->table[i];
+        if (templist->head == templist->tail) {
+        } else {
+            printlist(templist);
+        }
+    }
+}
 
