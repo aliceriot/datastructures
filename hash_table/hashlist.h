@@ -24,6 +24,7 @@ node *nodegen(char *key, char *value);
 void listinsert(list *insertlist, node *toinsert);
 void listremove(list *removelist, node *toremove);
 node *listsearch(list *tosearch, char *key, char *value);
+node *listkeysearch(list *tosearch, char *key);
 
 // function definitions
 
@@ -93,6 +94,19 @@ node *listsearch(list *tosearch, char *key, char *value)
     node *iternode = tosearch->head;
     while (iternode != tosearch->tail) {
         if ((strcmp(iternode->key, key) == 0) && (strcmp(iternode->value, value) == 0)) {
+            return iternode;
+        } else {
+            iternode = iternode->next;
+        }
+    }
+    return tosearch->tail;
+}
+
+node *listkeysearch(list *tosearch, char *key)
+{
+    node *iternode = tosearch->head;
+    while (iternode != tosearch->tail) {
+        if (strcmp(iternode->key, key) == 0) {
             return iternode;
         } else {
             iternode = iternode->next;

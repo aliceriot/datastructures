@@ -25,6 +25,8 @@ typedef struct hashtable {
 unsigned char *hash(unsigned char *key, unsigned char *output);
 hashtable *hashinit(int size);
 void destroyhash(hashtable *oldtable);
+int hashtokey(unsigned char *hash, int size);
+char *lookuphash(hashtable *hashtab, char *key);
 
 // function definitions
 unsigned char *hash(unsigned char *key, unsigned char *output)
@@ -62,21 +64,35 @@ void destroyhash(hashtable *oldtable)
 void inserthash(hashtable *hashtab, unsigned char *key, char *value)
 { // insert key,value pair into hashtab
     unsigned char keyhash[SHA_DIGEST_LENGTH];
-    int i = 1;
-    int j = 0;
-    int arraykey = 1;
-
-    // use as many of the bytes as we need for array size
+    int arraykey;
     hash(key, keyhash);
-    while (i < hashtab->size) {
-        arraykey *= keyhash[j++];
-        i *= 256;
-    }
-    arraykey = arraykey % hashtab->size;
-
+    arraykey = hashtokey(keyhash, hashtab->size);
     list *temp = hashtab->table[arraykey];
     listinsert(temp, nodegen(key, value));
 }
+
+int hashtokey(unsigned char *keyhash, int size)
+{ // convert hash into an array key for the size
+    int i, arraykey = 1;
+    int j = 0;
+    while (i < size) {
+        arraykey *= keyhash[j++];
+        i *= 256;
+    }
+    return arraykey % size;
+}
+
+/* char *lookuphash(hashtable *hashtab, char *key) */
+/* { */
+/*     unsigned char keyhash[SHA_DIGEST_LENGTH]; */
+/*     int arraykey; */
+/*     hash(key, keyhash); */
+/*     arraykey = hashtokey(keyhash, hashtab->size); */
+/*     list *templist = hashtab->table[arraykey]; */
+/*     node *search = listkeysearch(templist, key); */
+/*     return search->value; */
+/* } */
+
 
 void printhashtab(hashtable *toprint)
 {
@@ -91,4 +107,3 @@ void printhashtab(hashtable *toprint)
         }
     }
 }
-

@@ -59,4 +59,10 @@ int main() {
     printf("\ntry to print the table:\n");
     printhashtab(table);
 
+    printf("\nInsert more things!\n");
+    inserthash(table, "purple", "dinosaur");
+    inserthash(table, "blue", "potato");
+    inserthash(table, "chicken", "duck");
+    printhashtab(table);
+
 }
