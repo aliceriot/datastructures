@@ -67,9 +67,7 @@ We're just going to do something like:
 unsigned char *hash(unsigned char *key, unsigned char *output)
 { // get the hash of a key
     size_t len = sizeof(key);
-    /* unsigned char output[SHA_DIGEST_LENGTH]; */
     SHA1(key, len, output);
-    /* return output; */
 }
 ```
 
