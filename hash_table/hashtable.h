@@ -13,6 +13,8 @@
 /* is initialized pointing to an empty linked list, if we hash a key */ 
 /* that points to that node then we add things to that list (key/value pairs) */
 /* then later we can look in that list to find everything hashed to that key! */
+/* To make this work you also need the 'hashlist.h' file in the same directory */
+/* which defines the doubly linked list we use here for separate chaining */
 
 typedef struct hashtable {
     int size;
@@ -23,13 +25,12 @@ typedef struct hashtable {
 unsigned char *hash(unsigned char *key, unsigned char *output);
 hashtable *hashinit(int size);
 void destroyhash(hashtable *oldtable);
+
 // function definitions
 unsigned char *hash(unsigned char *key, unsigned char *output)
 { // get the hash of a key
     size_t len = sizeof(key);
-    /* unsigned char output[SHA_DIGEST_LENGTH]; */
     SHA1(key, len, output);
-    /* return output; */
 }
 
 hashtable *hashinit(int size)

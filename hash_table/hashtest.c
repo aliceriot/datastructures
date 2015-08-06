@@ -46,4 +46,9 @@ int main() {
         printf("%d ", trialtwo[i]);
     }
 
+    printf("\ndestroy a hashtable:\n");
+    destroyhash(table);
+    table = hashinit(100);
+    printf("success!\n");
+
 }
