@@ -6,7 +6,19 @@ firstly because I learn well by trying to do things and writing about
 them, and secondly because when I'm done I'll have a nice library I can
 use for subsequent C projects!
 
-There's a directory for each type of data structure (tree, linked list,
-etc) which has a little essay/overview in it about the code I wrote, along
-with a `.h` file containing the structs and functions necessary for that
-data structure and a `.c` file containing some tests and usage examples.
+This repo is basically a directory repo, all of the individual data
+structures are submodules. If you want to pull them all in you can clone
+the repo and then do:
+
+```
+git submodule init
+git submodule update
+```
+
+Or you can just go look at the [hash
+table](https://github.com/aliceriot/hashtable) and [linked
+list](https://github.com/aliceriot/hashtable) repos. Each repo has
+a little essay (the README) that I wrote as I was writing it. Writing is
+so helpful for learning this stuff! You'll also find a `.h` file that
+gives you all you need to use the data structure, and a `.c` file that has
+tests in it (also serves as usage examples).
