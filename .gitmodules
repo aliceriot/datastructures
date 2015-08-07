@@ -1,0 +1,6 @@
+[submodule "linkedlist"]
+	path = linkedlist
+	url = git@github.com:aliceriot/linkedlist.git
+[submodule "hashtable"]
+	path = hashtable
+	url = git@github.com:aliceriot/hashtable.git
