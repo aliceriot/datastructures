@@ -1,4 +1,4 @@
-#Data Structures in C
+# Data Structures in C
 
 I decided to implement some basic data structures and a few operations on
 them in C. I thought this would be a useful exercise for a couple reasons:
